@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :invitable
   validates :email, presence: true, uniqueness: true
+
+  has_and_belongs_to_many :bids
 end
