@@ -12,11 +12,11 @@ RSpec.describe Bid, :type => :model do
   context '#invite' do
     subject { bids(:bid1) }
 
-    it 'Exceptions on non user' do
+    it 'Exceção caso o parametro não seja o experado' do
       expect { subject.invite!(1234) }.to raise_error "user deve ser um User, email ou hash de parametros para o invite"
     end
 
-    it 'User must add to bidders collection' do
+    it 'Adiciona os a coleção de bidders' do
       b1 = users(:bidder1)
       b2 = users(:bidder2)
       subject.invite!(b1)
@@ -24,14 +24,25 @@ RSpec.describe Bid, :type => :model do
       expect(subject.bidders).to eq([b1, b2])
     end
 
-    it 'must invite new user if a hash is given' do
+    it 'Aceita hash com parametros minimos' do
       allow(User).to receive(:invite!).with(email: 'someemail@email.com')
       subject.invite!("someemail@email.com")
     end
 
-    it 'must accept hash as params' do
+    it 'Aceita hash como parametros' do
       allow(User).to receive(:invite!).with(name: 'teste', email: 'ee_mail@email.com')
       subject.invite!(name: 'teste', email: 'ee_mail@email.com')
+    end
+
+    it 'Cria um novo se não existe' do
+      subject.invite!(name: 'john', email:'e@mail.com', skip_invitation: true)
+      expect(User.where(name: 'john', email: 'e@mail.com').count).to eq(1)
+    end
+
+    it 'Já foi convidado, não manda o invite denovo' do
+      b1 = users(:bidder1)
+      subject.invite!(name: b1.name, email: b1.email) 
+      expect(b1.reload.invitations_count).to eq(0)
     end
   end
 end
