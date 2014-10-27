@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
          :confirmable, :invitable
   validates :email, presence: true, uniqueness: true
 
-  has_and_belongs_to_many :bids
+  has_many :bids_as_owner, class_name: 'Bid', foreign_key: 'owner_id', dependent: :destroy
+  has_and_belongs_to_many :bids_as_participant, class_name: 'Bid'
 end
