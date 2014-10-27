@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20141027081651) do
     t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id",   null: false
   end
+
+  add_index "bids", ["owner_id"], name: "index_bids_on_owner_id", using: :btree
 
   create_table "bids_users", id: false, force: true do |t|
     t.integer "bid_id",  null: false
@@ -56,7 +59,6 @@ ActiveRecord::Schema.define(version: 20141027081651) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
-    t.integer  "owner_id",                            null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -64,7 +66,6 @@ ActiveRecord::Schema.define(version: 20141027081651) do
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
-  add_index "users", ["owner_id"], name: "index_users_on_owner_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
