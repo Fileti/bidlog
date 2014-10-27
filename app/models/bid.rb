@@ -1,4 +1,7 @@
+require 'refinements/for_string' # Autoload? How?
+
 class Bid < ActiveRecord::Base
+  using Refinements::ForString
   belongs_to :parent, class_name: "Bid", foreign_key: "parent_id"
   
   belongs_to :owner, class_name: "User", foreign_key: 'owner_id'
@@ -10,7 +13,7 @@ class Bid < ActiveRecord::Base
       return
     end
 
-    user = { email: user } if user.respond_to?(:email?) && user.email?
+    user = { email: user } if user.is_a?(String) && user.email?
 
     if user.is_a? Hash
       User.invite!(user)
