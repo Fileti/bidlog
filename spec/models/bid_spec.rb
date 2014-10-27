@@ -6,4 +6,8 @@ RSpec.describe Bid, :type => :model do
                         .with_foreign_key(:owner_id)
                         .class_name('User') }
   it { is_expected.to have_and_belong_to_many(:bidders) }
+
+  it '' do
+    expect { subject.invite!(1234) }.to raise_error "user deve ser um User, email ou hash de parametros para o invite"
+  end
 end
