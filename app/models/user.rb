@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :invitable
+  
   validates :email, presence: true, uniqueness: true
 
   has_many :bids_as_owner, class_name: 'Bid', 
