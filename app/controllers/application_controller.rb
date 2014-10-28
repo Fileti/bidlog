@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  respond_to :html
+
   # To verify if a user is signed in, use the following helper:
   # user_signed_in?
 
