@@ -12,6 +12,7 @@ class BidsController < ApplicationController
 
   def new
     @bid = Bid.new
+    @bid.owner = current_user
     respond_with(@bid)
   end
 
@@ -20,6 +21,7 @@ class BidsController < ApplicationController
 
   def create
     @bid = Bid.new(bid_params)
+    @bid.owner = current_user
     @bid.save
     respond_with(@bid)
   end
@@ -40,6 +42,6 @@ class BidsController < ApplicationController
     end
 
     def bid_params
-      params[:bid]
+      params.require(:bid).permit(:obs)
     end
 end
