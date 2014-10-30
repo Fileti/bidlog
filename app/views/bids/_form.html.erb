@@ -1,7 +1,20 @@
-<%= simple_form_for(@bid) do |f| %>
+<%= simple_form_for(@bid, wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :obs %>
+<div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-cube"></i>
+          Bid
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+        <%= f.input :obs %>
+      </div> <!-- portlet-content -->
+
+    </div>
+
 
   <div class="form-actions">
     <%= f.button :submit %>
