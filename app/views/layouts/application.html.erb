@@ -93,7 +93,7 @@
 
 
       <div class="content-header">
-        <h2 class="content-header-title">{{ page.title || "BidLog" }}</h2>
+        <h2 class="content-header-title"><%= yield :title %></h2>
       </div> <!-- /.content-header -->
 
       <%= yield %>
