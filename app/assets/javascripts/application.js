@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
+//= require select2
+//= require select2_locale_pt-BR
 //= require_tree .
+
+$(document).ready(function() {
+  $('select').select2({width: 'resolve'});
+});
