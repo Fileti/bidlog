@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
   <title>Bidlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -8,7 +8,218 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="navbar">
 
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-cogs"></i>
+      </button>
+
+      <a class="navbar-brand navbar-brand-image" href="/index.html">
+        <%= image_tag "logo.png", alt: 'Site logo' %>
+      </a>
+
+    </div> <!-- /.navbar-header -->
+
+    <div class="navbar-collapse collapse">
+
+    </div> <!--/.navbar-collapse -->
+
+  </div> <!-- /.container -->
+
+</div> <!-- /.navbar -->
+
+  <div class="mainbar">
+
+  <div class="container">
+
+    <button type="button" class="btn mainbar-toggle" data-toggle="collapse" data-target=".mainbar-collapse">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="mainbar-collapse collapse">
+
+      <ul class="nav navbar-nav mainbar-nav">
+        <li class="dropdown active"> <!-- TODO: tirar o active quando não for novo bid -->
+          <a href="#about" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <i class="fa fa-cube"></i>
+            Novo Bid
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="/novo-bid-individual"><i class="fa fa-plus nav-icon"></i> Individual</a></li>
+            <li><a href="/novo-bid-mensal"><i class="fa fa-repeat nav-icon"></i> Mensal</a></li>
+            <li><a href="/novo-bid-anual"><i class="fa fa-calendar nav-icon"></i> Anual</a></li>
+          </ul>
+        </li>
+        <li class="active"> <!-- TODO: tirar o active quando não for meus-bids -->
+          <a href="/meus-bids">
+            <i class="fa fa-cubes"></i>
+            Meus bids
+          </a>
+        </li>
+        <li class=""> <!-- TODO: active quando for estatisticas -->
+          <a href="/estatisticas">
+            <i class="fa fa-bar-chart-o"></i>
+            Estatísticas
+          </a>
+        </li>
+        <li>
+          <a href="/configuracoes">
+            <i class="fa fa-cogs"></i>
+            Configurações
+          </a>
+        </li>
+
+      </ul>
+
+    </div> <!-- /.navbar-collapse -->
+
+  </div> <!-- /.container -->
+
+</div> <!-- /.mainbar -->
+
+
+<div class="container">
+
+  <div class="content">
+
+    <div class="content-container">
+
+
+
+      <div class="content-header">
+        <h2 class="content-header-title">{{ page.title || "BidLog" }}</h2>
+      </div> <!-- /.content-header -->
+
+      <%= yield %>
+
+    </div> <!-- /.content-container -->
+
+  </div> <!-- /.content -->
+
+</div> <!-- /.container -->
+
+
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-12">
+
+        <h4>BidLog</h4>
+
+        <hr>
+
+        <p>&copy; 2014 BidLog.</p>
+
+      </div> <!-- /.col -->
+
+      <!--div class="col-sm-3">
+
+        <h4>Support</h4>
+
+        <br>
+
+        <ul class="icons-list">
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Frequently Asked Questions</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Ask a Question</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Video Tutorial</a>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Feedback</a>
+          </li>
+        </ul>
+
+      </div--> <!-- /.col -->
+
+      <!--div class="col-sm-3">
+
+        <h4>Legal</h4>
+
+        <br>
+
+        <ul class="icons-list">
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">License</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Terms of Use</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Privacy Policy</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Security</a>
+          </li>
+        </ul>
+
+      </div--> <!-- /.col -->
+
+      <!--div class="col-sm-3">
+
+        <h4>Settings</h4>
+
+        <br>
+
+        <ul class="icons-list">
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Consectetur adipisicing</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Eiusmod tempor </a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Fugiat nulla pariatur</a>
+          </li>
+          <li>
+            <i class="fa fa-angle-double-right icon-li"></i>
+            <a href="javascript:;">Officia deserunt</a>
+          </li>
+        </ul>
+
+      </div--> <!-- /.col -->
+
+    </div> <!-- /.row -->
+
+  </div> <!-- /.container -->
+
+</footer>
+
+<!--
+  <script src="/js/libs/jquery-1.10.1.min.js"></script>
+  <script src="/js/libs/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="/js/libs/bootstrap.min.js"></script>
+  <script src="/js/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="/js/plugins/timepicker/bootstrap-timepicker.js"></script>
+-->
+  <!--[if lt IE 9]>
+  <script src="/js/libs/excanvas.compiled.js"></script>
+  <![endif]-->
+  <!-- App JS -->
+<!--
+  <script src="/js/target-admin.js"></script>
+-->
 </body>
 </html>
