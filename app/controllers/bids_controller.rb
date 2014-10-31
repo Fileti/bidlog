@@ -20,17 +20,18 @@ class BidsController < ApplicationController
   def edit
   end
 
+  DestroyField = "_destroy".freeze
+
   def create
-    bidders = bid_params.delete(:bidders_attributes)
+    #bidders = bid_params.delete(:bidders_attributes)
     @bid = Bid.new(bid_params)
     @bid.owner = current_user
     # TODO: isolar!
     ActiveRecord::Base.transaction do
-      @bid.save
-      bidders.each do |_, bidder|
-        next if bidder[:_delete]
-        @bid.invite!(bidder)
+      @bid.bidders.each do |bidder|
+        bidder.invite!
       end
+      @bid.save
     end
     respond_with(@bid)
   end
