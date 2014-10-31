@@ -13,6 +13,7 @@ class BidsController < ApplicationController
   def new
     @bid = Bid.new
     @bid.owner = current_user
+    @bid.bidders.new
     respond_with(@bid)
   end
 
@@ -20,9 +21,17 @@ class BidsController < ApplicationController
   end
 
   def create
+    bidders = bid_params.delete(:bidders_attributes)
     @bid = Bid.new(bid_params)
     @bid.owner = current_user
-    @bid.save
+    # TODO: isolar!
+    ActiveRecord::Base.transaction do
+      @bid.save
+      bidders.each do |_, bidder|
+        next if bidder[:_delete]
+        @bid.invite!(bidder)
+      end
+    end
     respond_with(@bid)
   end
 
@@ -42,6 +51,6 @@ class BidsController < ApplicationController
     end
 
     def bid_params
-      params.require(:bid).permit(:obs)
+      params.require(:bid).permit(:obs, bidders_attributes: [:id, :name, :email, :_destroy])
     end
 end

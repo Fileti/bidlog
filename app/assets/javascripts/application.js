@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_pt-BR
+//= require cocoon
 //= require_tree .
 
 $(document).ready(function() {

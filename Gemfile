@@ -43,6 +43,8 @@ gem 'select2-rails'
 # with no opinion on markup
 gem 'simple_form', '~> 3.1.0.rc2'
 
+gem 'cocoon'
+
 gem 'responders', '~> 2.0'
 
 # Use jquery as the JavaScript library

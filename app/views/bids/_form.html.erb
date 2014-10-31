@@ -1,19 +1,37 @@
 <%= simple_form_for(@bid, wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
 
-<div class="portlet">
-      <div class="portlet-header">
-        <h3>
-          <i class="fa fa-cube"></i>
-          Bid
-        </h3>
-      </div> <!-- /.portlet-header -->
+  <div class="portlet">
+    <div class="portlet-header">
+      <h3>
+        <i class="fa fa-cube"></i>
+        Bid
+      </h3>
+    </div> <!-- /.portlet-header -->
 
-      <div class="portlet-content">
-        <%= f.input :obs %>
+    <div class="portlet-content">
+      <%= f.input :obs %>
+    </div> <!-- portlet-content -->
+  </div>
+
+
+  <div class="portlet">
+    <div class="portlet-header">
+      <h3>
+        <i class="fa fa-paper-plane-o"></i>
+        Participantes
+      </h3>
+    </div> <!-- /.portlet-header -->
+
+    <div class="portlet-content">
+      <div id="#bidders">
+        <%= f.simple_fields_for :bidders do |bidder| %>
+          <%= render 'bidder_fields', :f => bidder %>
+          <%= link_to_add_association 'Novo Participante', f, :bidders %>
+        <% end %>
       </div> <!-- portlet-content -->
-
     </div>
+  </div>
 
 
   <div class="form-actions">
