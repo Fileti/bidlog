@@ -20,10 +20,7 @@ class BidsController < ApplicationController
   def edit
   end
 
-  DestroyField = "_destroy".freeze
-
   def create
-    #bidders = bid_params.delete(:bidders_attributes)
     @bid = Bid.new(bid_params)
     @bid.owner = current_user
     # TODO: isolar!
