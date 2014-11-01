@@ -42,12 +42,18 @@ RSpec.describe BidPresenter, type: :view do
     it_behaves_like 'a link helper'
   end
 
-#  it '#link_to_edit' do
-#    link = subject.link_to_edit 'aaaaa'
-#    
-#    
-#    expect( !!(link =~ /aaaaa/) ).to be true
-#  end
+  context '#edit with block' do
+    let(:link) do 
+      subject.link_to_edit class: 'mimimi2' do 
+        text
+      end
+    end
+    let(:href) { "/bids/#{bid.id}/edit" }
+    let(:text) { 'outro texto' }
+    let(:extra) { /class="mimimi2"/ }
+    it_behaves_like 'a link helper'
+  end
+
 #
 #  it '#link_to_edit with block' do
 #    link = subject.link_to_edit(class: 'some-class') do
