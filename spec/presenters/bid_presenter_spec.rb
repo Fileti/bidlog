@@ -22,6 +22,14 @@ RSpec.shared_examples 'a link helper' do
   end
 end
 
+RSpec.shared_examples 'a delete link helper' do
+  it_behaves_like 'a link helper'
+
+  it 'must have method delete' do
+    expect( !!(link =~ /method="delete"/) ).to be true
+  end
+end
+
 RSpec.describe BidPresenter, type: :view do
   fixtures(:bids, :users)
 
@@ -54,17 +62,14 @@ RSpec.describe BidPresenter, type: :view do
     it_behaves_like 'a link helper'
   end
 
-#
-#  it '#link_to_edit with block' do
-#    link = subject.link_to_edit(class: 'some-class') do
-#      'tags entre a tag de a href'
-#    end
-#
-#    expect( !!(link =~ /<a[^>]+href=/) ).to be true
-#    expect( !!( link =~ /class="some-class"/ ) ).to be true
-#    
-#  end
-#
+  context '#delete' do
+    let(:link) { subject.link_to_delete text, class: 'mimimi' }
+    let(:href) { "/bids/#{bid.id}" }
+    let(:text) { 'aaaaa' }
+    let(:extra) { /class="mimimi"/ }
+    it_behaves_like 'a delete link helper'
+  end
+
 #  it '#link_to_delete with block' do
 #    link = subject.link_to_delete class: 'other-class' do 
 #      'aaaa'
