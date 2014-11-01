@@ -42,25 +42,25 @@
           </a>
 
           <ul class="dropdown-menu">
-            <li><a href="/novo-bid-individual"><i class="fa fa-plus nav-icon"></i> Individual</a></li>
-            <li><a href="/novo-bid-mensal"><i class="fa fa-repeat nav-icon"></i> Mensal</a></li>
-            <li><a href="/novo-bid-anual"><i class="fa fa-calendar nav-icon"></i> Anual</a></li>
+            <li><a href="<%= new_bid_path %>"><i class="fa fa-plus nav-icon"></i> Individual</a></li>
+            <li><a href="#"><i class="fa fa-repeat nav-icon"></i> Mensal</a></li>
+            <li><a href="#"><i class="fa fa-calendar nav-icon"></i> Anual</a></li>
           </ul>
         </li>
         <li class="active"> <!-- TODO: tirar o active quando não for meus-bids -->
-          <a href="/meus-bids">
+          <a href="<%= bids_path %>">
             <i class="fa fa-cubes"></i>
             Meus bids
           </a>
         </li>
         <li class=""> <!-- TODO: active quando for estatisticas -->
-          <a href="/estatisticas">
+          <a href="#">
             <i class="fa fa-bar-chart-o"></i>
             Estatísticas
           </a>
         </li>
         <li>
-          <a href="/configuracoes">
+          <a href="#">
             <i class="fa fa-cogs"></i>
             Configurações
           </a>
