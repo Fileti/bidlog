@@ -70,23 +70,15 @@ RSpec.describe BidPresenter, type: :view do
     it_behaves_like 'a delete link helper'
   end
 
-#  it '#link_to_delete with block' do
-#    link = subject.link_to_delete class: 'other-class' do 
-#      'aaaa'
-#    end
-#    expect( !!( link =~ /<a[^>]+href=/)).to be true
-#    expect( !!( link =~ /class="other-class"/ ) ).to be true
-#    expect( !!( link =~ />aaaa</)).to be true
-#    expect( !!( link =~ /method="delete"/ )).to be true
-#    expect( !!(link =~ /bids\/#{bid.id}/) ).to be true
-#  end
-
-#  it '#link_to_delete' do
-#    link = subject.link_to_delete 'aaaa', class: 'other-class'
-#    expect( !!(link =~ /<a[^>]+href=/)).to be true
-#    expect( !!(link =~ /class="other-class"/ ) ).to be true
-#    expect( !!(link =~ />aaaa</)).to be true
-#    expect( !!(link =~ /method="delete"/ )).to be true
-#    expect( !!(link =~ /bids\/#{bid.id}/) ).to be true    
-#  end
+  context '#delete with block' do
+    let(:link) do 
+      subject.link_to_delete class: 'mimimi3' do
+        text
+      end
+    end
+    let(:href) { "/bids/#{bid.id}" }
+    let(:text) { 'texto' }
+    let(:extra) { /class="mimimi3"/ }
+    it_behaves_like 'a delete link helper'    
+  end
 end
