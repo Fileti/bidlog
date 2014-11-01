@@ -11,21 +11,31 @@ class BidPresenter
     @bidders ||= bid.bidders.map { |o| BidderPresenter.new(o) }
   end
 
+  def link_to(mode, *params, &block)
+    if(block.present?)
+      helpers.link_to routes.send(mode, bid), *params, &block
+    else
+      txt = params.delete_at(0)
+      helpers.link_to txt, routes.send(mode, bid), *params, &block
+    end
+  end
+
   def link_to_edit *params, &block
-    helpers.link_to routes.edit_bid_path(bid), *params, &block
+    link_to :edit_bid_path, *params, &block
   end
 
   def link_to_delete *params, &block
-    hash = { 
-          method: :delete, 
-          data: { confirm: 'Are you sure?' }
-        }
+    hash = { method: :delete, data: { confirm: 'Confirma remoção?' } }
 
-    hash = hash.merge params.delete_at(0)  if params.first.is_a?(Hash)
+    param_position = block.present? ? 0 : 1
 
-    p = [bid, hash, *params]
+    if params[param_position].is_a?(Hash)
+      hash = hash.merge params[param_position] 
+    end
 
-    helpers.link_to *p, &block
+    params[param_position] = hash
+
+    link_to :bid_path, *params, &block
   end
 
 private
