@@ -21,10 +21,10 @@ class BidsController < ApplicationController
   end
 
   def create
-    @bid = Bid.new(bid_params)
-    @bid.owner = current_user
     # TODO: isolar!
     ActiveRecord::Base.transaction do
+      @bid = Bid.new(bid_params)
+      @bid.owner = current_user
       @bid.bidders.each do |bidder|
         bidder.invite!
       end

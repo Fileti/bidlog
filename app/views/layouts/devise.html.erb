@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <title>Bidlog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="account-bg">
+
+<div class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-cogs"></i>
+      </button>
+      <a class="navbar-brand navbar-brand-image" href="./index.html">
+        <%= image_tag "logo.png", alt: 'Site logo' %>
+      </a>
+    </div> <!-- /.navbar-header -->
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        </li>
+      </ul>
+    </div> <!--/.navbar-collapse -->
+  </div> <!-- /.container -->
+</div> <!-- /.navbar -->
+
+<hr class="account-header-divider">
+
+<div class="account-wrapper">
+
+  <div class="account-logo">
+    <%= image_tag "logo-login.png", alt: 'Bid log' %>
+  </div>
+
+    <div class="account-body">
+      <%= yield %>
+    </div> <!-- /.account-body -->
+  </div> <!-- /.account-wrapper -->
+</body>
+</html>

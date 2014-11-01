@@ -1,14 +1,17 @@
-<h2>Log in</h2>
+<h3 class="account-body-title">BidLog</h3>
+<h5 class="account-body-subtitle">Acesso Restrito</h5>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :email, required: false, autofocus: true, label: false, placeholder: 'Email' %>
+    <%= f.input :password, required: false, label: false, placeholder: 'Senha' %>
+    <div class="pull-left">
+      <%= f.input :remember_me, as: :boolean, label: false, inline_label: 'Lembrar neste computador' if devise_mapping.rememberable? %>
+    </div>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Entrar", class: 'form-control btn btn-primary' %>
   </div>
 <% end %>
 
