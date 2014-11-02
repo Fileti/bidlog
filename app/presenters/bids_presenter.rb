@@ -6,6 +6,6 @@ class BidsPresenter < Array
   end
 
   def headers
-    @headers ||= ['#', 'Observação', 'Bidders', '']
+    @headers ||= ['#', 'Observação', 'Participantes', '']
   end
 end
