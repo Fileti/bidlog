@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
-  fixtures :bids, :users
+  fixtures :bids, :users 
 
   it { is_expected.to belong_to :parent }
   it { is_expected.to belong_to(:owner)

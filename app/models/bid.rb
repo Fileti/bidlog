@@ -21,7 +21,8 @@ class Bid < ActiveRecord::Base
     user = { email: user } if user.is_a?(String) && user.email?
 
     if user.is_a? Hash
-      bidders << User.invite!(user)
+      a = User.invite!(user)
+      bidders << a
       return
     end
 

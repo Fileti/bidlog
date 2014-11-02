@@ -2,7 +2,7 @@ class BidsController < ApplicationController
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bids = Bid.user_bids(current_user)
+    @bids = BidsPresenter.new(Bid.user_bids(current_user))
     respond_with(@bids)
   end
 

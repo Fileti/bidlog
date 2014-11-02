@@ -3,6 +3,8 @@ class BidPresenter
 
   delegate :id, :obs, to: :bid
 
+  alias_method :model, :bid
+
   def initialize bid
     @bid = bid
   end
@@ -11,12 +13,13 @@ class BidPresenter
     @bidders ||= bid.bidders.map { |o| BidderPresenter.new(o) }
   end
 
+  # Duplicam o output por algum motivo!
   def link_to(mode, *params, &block)
     if(block.present?)
       helpers.link_to routes.send(mode, bid), *params, &block
     else
       txt = params.delete_at(0)
-      helpers.link_to txt, routes.send(mode, bid), *params, &block
+      helpers.link_to txt, routes.send(mode, bid), *params
     end
   end
 
@@ -40,7 +43,10 @@ class BidPresenter
 
 private
   def helpers
-    ApplicationController.helpers
+    return @helpers if @helpers
+    @helpers = ApplicationController.helpers
+    @helpers.extend(ActionView::RoutingUrlFor)
+    @helpers
   end
 
   def routes
