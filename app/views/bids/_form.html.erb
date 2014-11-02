@@ -27,7 +27,7 @@
       <div id="#bidders">
         <%= f.simple_fields_for :bidders do |bidder| %>
           <%= render 'bidder_fields', :f => bidder %>
-          <%= link_to_add_association 'Novo Participante', f, :bidders %>
+          <%= link_to_add_association 'Novo Participante', f, :bidders, class: 'btn btn-secondary' %>
         <% end %>
       </div> <!-- portlet-content -->
     </div>
@@ -35,6 +35,6 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-secondary' %>
   </div>
 <% end %>
