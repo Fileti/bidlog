@@ -9,6 +9,10 @@ class BidPresenter
     @bid = bid
   end
 
+  def bidders_excerpt
+    @excerpt ||= bidders.map(&:name_or_email).join(', ')
+  end
+
   def bidders
     @bidders ||= bid.bidders.map { |o| BidderPresenter.new(o) }
   end

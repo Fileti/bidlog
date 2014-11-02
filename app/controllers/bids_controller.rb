@@ -28,9 +28,12 @@ class BidsController < ApplicationController
       @bid.bidders.each do |bidder|
         bidder.invite!
       end
-      @bid.save
+      if @bid.save
+        redirect_to bids_path
+      else
+        respond_with @bid
+      end
     end
-    respond_with(@bid)
   end
 
   def update

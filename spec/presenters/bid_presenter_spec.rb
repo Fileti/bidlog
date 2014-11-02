@@ -42,6 +42,15 @@ RSpec.describe BidPresenter, type: :view do
     expect(subject.obs).to eq(bid.obs)
   end
 
+  context 'excerpt' do
+    it '#excerpt' do
+      bid.bidders << users(:bidder1)
+      bid.bidders << users(:bidder2)
+      bid.bidders << User.invite!(email: 'so@email.com')
+      expect(subject.bidders_excerpt).to eq 'Bidder 1, Bidder 2, so@email.com'
+    end
+  end
+
   context '#edit' do
     let(:link) { subject.link_to_edit text, class: 'mimimi' }
     let(:href) { "/bids/#{bid.id}/edit" }

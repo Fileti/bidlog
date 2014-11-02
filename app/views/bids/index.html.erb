@@ -9,9 +9,9 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Observação</th>
-          <th></th>
+          <% @bids.headers.each do |header| %>
+          <th><%= header %></th>
+          <% end %>
         </tr>
       </thead>
 
@@ -20,11 +20,12 @@
           <tr>
             <td><%= bid.id %></td>
             <td><%= bid.obs %></td>
+            <td><%= bid.bidders_excerpt %></td>
             <td>
               <%= link_to bid.model, class: 'btn btn-secondary btn-xs' do %>
                 <i class="fa fa-pencil"></i>
               <% end %>
-              <%= link_to bid.model, method: delete, data: { confirm: 'Remover Bid?' }, class: "btn btn-danger btn-xs" do %>
+              <%= link_to bid.model, method: :delete, data: { confirm: 'Remover Bid?' }, class: "btn btn-danger btn-xs" do %>
                 <i class="fa fa-trash-o"></i>
               <% end %>
             </td>
@@ -35,9 +36,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <a href="#" class="btn btn-primary">Novo Bid</a>
-        <a href="#" class="btn btn-secondary">Gravar e Sair</a>
-        <a href="/estatisticas" class="btn btn-default">Cancelar</a>
+        <%= link_to 'Novo Bid', new_bid_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
