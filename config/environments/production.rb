@@ -75,4 +75,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['bidlog_smtp_address'],
+    port:                 587,
+    domain:               'mcorp.io',
+    user_name:            ENV['bidlog_smtp_user_name'],
+    password:             ENV['bidlog_smtp_user_password'],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 end
