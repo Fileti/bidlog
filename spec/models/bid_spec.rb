@@ -8,6 +8,7 @@ RSpec.describe Bid, :type => :model do
                         .with_foreign_key(:owner_id)
                         .class_name('User') }
   it { is_expected.to have_and_belong_to_many(:bidders) }
+  it { is_expected.to have_many(:responses) }
 
   context '#invite' do
     subject { bids(:bid1) }

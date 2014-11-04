@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027081651) do
+ActiveRecord::Schema.define(version: 20141104225417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bid_responses", force: true do |t|
+    t.integer  "bid_id"
+    t.integer  "bidder_id"
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "bid_responses", ["bid_id"], name: "index_bid_responses_on_bid_id", using: :btree
 
   create_table "bids", force: true do |t|
     t.string   "obs"
