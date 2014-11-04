@@ -7,6 +7,8 @@ class Bid < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: 'owner_id'
   has_and_belongs_to_many :bidders, class_name: "User"
 
+  has_many :responses, class_name: "BidResponse"
+
   accepts_nested_attributes_for :bidders, :reject_if => :all_blank, :allow_destroy => true
 
   scope :user_bids, ->(user) { where(owner_id: user.id).newest }
