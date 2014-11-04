@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
                            foreign_key: 'owner_id', 
                            dependent: :restrict_with_error
   has_and_belongs_to_many :bids_as_bidder, class_name: 'Bid'
+
+  has_many :bid_responses, foreign_key: 'bidder_id'
 end

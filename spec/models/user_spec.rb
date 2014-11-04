@@ -9,4 +9,7 @@ RSpec.describe User, :type => :model do
                         .with_foreign_key(:owner_id)
                         .class_name('Bid')
                         .dependent(:restrict_with_error) }
+
+  it { is_expected.to have_many(:bid_responses)
+                        .with_foreign_key(:bidder_id)}
 end
