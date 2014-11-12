@@ -1,8 +1,10 @@
 class BidsController < ApplicationController
-  before_action :set_bid, only: [:show, :edit, :update, :destroy]
+  before_action :set_bid, only: [:show, :edit, :update, :destroy, :accept, :reject]
 
   def index
     @bids = BidsPresenter.new(Bid.user_bids(current_user))
+    @bids_to_response = BidsPresenter.new(Bid.response_bids(current_user))
+    
     respond_with(@bids)
   end
 
@@ -44,6 +46,24 @@ class BidsController < ApplicationController
   def destroy
     @bid.destroy
     respond_with(@bid)
+  end
+
+  #http://localhost:3000/bids/1/accept
+  def accept
+    response = @bid.responses.new
+    response.bidder = current_user
+    response.accepted!
+    @bid.save
+    redirect_to bids_path
+  end
+
+  #http://localhost:3000/bids/1/decline
+  def reject
+    response = @bid.responses.new
+    response.bidder = current_user
+    response.rejected!
+    @bid.save
+    redirect_to bids_path
   end
 
   private
