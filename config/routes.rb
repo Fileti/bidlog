@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :bids
+  resources :bids do
+    member do
+      get 'accept'
+      get 'reject'
+    end
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

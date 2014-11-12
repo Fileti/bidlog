@@ -4,8 +4,6 @@
 
 <div class="row">
   <div class="col-md-12">
-
-
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -40,4 +38,55 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Bids pendentes</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <% @bids_to_response.headers.each do |header| %>
+          <th><%= header %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @bids_to_response.each do |bid| %>
+          <tr>
+            <td><%= bid.id %></td>
+            <td><%= bid.obs %></td>
+            <td><%= bid.bidders_excerpt %></td>
+            <td>
+
+              <% 
+              #TODO presenter
+              a = bid.model.responses.where(bidder: current_user).first
+
+              if a == nil %>
+                  <%= link_to accept_bid_path(bid.model), class: 'btn btn-secondary btn-xs' do %>
+                    <i class="fa fa-thumbs-up"></i>
+                  <% end %>
+                  <%= link_to reject_bid_path(bid.model), class: "btn btn-danger btn-xs" do %>
+                    <i class="fa fa-thumbs-down"></i>
+                  <% end %>
+          <% else 
+                if a.status == BidResponse.statuses[:accepted] %>
+                  <i class="fa fa-thumbs-up"></i>
+                <% else %>
+                  <i class="fa fa-thumbs-down"></i>
+                <% end %>    
+                    </td>
+                  </tr>
+          <% end %>
+        <% end %>
+
+      </tbody>
+    </table>
 </div>
