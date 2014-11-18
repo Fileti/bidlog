@@ -20,27 +20,35 @@ class BidsController < ApplicationController
   end
 
   def edit
+    @bid = Bid.find(params[:id])
+    respond_with(@bid)
   end
 
   def create
     # TODO: isolar!
-    ActiveRecord::Base.transaction do
-      @bid = Bid.new(bid_params)
-      @bid.owner = current_user
-      @bid.bidders.each do |bidder|
-        bidder.invite!
-      end
-      if @bid.save
+   
+    @bid = Bid.new(bid_params)
+    save_bid @bid
+    
+    if save_bid @bid
         redirect_to bids_path
-      else
-        respond_with @bid
-      end
+    else
+      respond_with @bid
     end
+
   end
 
   def update
-    @bid.update(bid_params)
-    respond_with(@bid)
+    new_bid = @bid.dup
+    new_bid.parent_id = @bid.id
+    new_bid.bidders = @bid.bidders
+
+    save_bid (new_bid)
+
+    #@bid.active? = false
+    #@bid.update(bid_params)
+
+    redirect_to bids_path
   end
 
   def destroy
@@ -74,4 +82,20 @@ class BidsController < ApplicationController
     def bid_params
       params.require(:bid).permit(:obs, bidders_attributes: [:id, :name, :email, :_destroy])
     end
+
+    def save_bid bid
+      ActiveRecord::Base.transaction do
+        bid.owner = current_user
+        
+        bid.bidders.each do |bidder|
+          bidder.invite!
+        end
+      
+      if bid.save
+        true
+      else
+        false
+      end
+    end
+  end
 end
