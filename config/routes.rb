@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'choose/index/:id' => 'choose#index'
+  post 'choose/chosen/:id' => 'choose#chosen'
+
   resources :bids do
     member do
       get 'accept'

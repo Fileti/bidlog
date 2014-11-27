@@ -39,14 +39,16 @@ class BidsController < ApplicationController
   end
 
   def update
+    @bid.update(bid_params)
+
     new_bid = @bid.dup
     new_bid.parent_id = @bid.id
     new_bid.bidders = @bid.bidders
-
+    
     save_bid (new_bid)
 
-    #@bid.active? = false
-    #@bid.update(bid_params)
+    @bid.status = false
+    @bid.save
 
     redirect_to bids_path
   end
