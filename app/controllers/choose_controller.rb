@@ -7,9 +7,11 @@ class ChooseController < ApplicationController
   	bid_chosen = Bid.find(params[:id])
   	id_response = params[:response_id]
   	
-  	puts ('-------------------------------------------------------------------------------------')
-  	puts (id_response)
-  	puts ('-------------------------------------------------------------------------------------')
+	bid_chosen.winner_id = id_response
+	bid_chosen.save
+
+	#response = BidResponse.find(params[:response_id])
+	#bid_chosen.
 
   	redirect_to bids_path
   end
