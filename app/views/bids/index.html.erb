@@ -22,7 +22,7 @@
               <%= link_to edit_bid_path(bid.model), class: 'btn btn-secondary btn-xs' do %>
                 <i class="fa fa-pencil"></i>
               <% end %>
-              <%= link_to choose_bid_path(bid.model), class: bid.winner_chooser_class, title: bid.winner_chooser_title do %>
+              <%= link_to bid_choose_index_path(bid.model), class: bid.winner_chooser_class, title: bid.winner_chooser_title do %>
                 <i class="fa fa-trophy"></i>
                 <%= bid.responses_badge %>
               <% end %>
