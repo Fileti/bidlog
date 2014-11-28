@@ -1,0 +1,30 @@
+<%= content_for :title, 'Choose a winner to bid' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+        <td>#</td>
+        <td>Nome</td>
+        <td>Status</td>
+        <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bid.responses.each do |response| %>
+          <tr>
+            <td><%= response.id %></td>
+            <td><%= response.bidder.name %></td>
+            <td><%= response.status %></td>
+            <td>
+              <%= link_to '/choose/chosen/' + @bid.id.to_s + '?' + {response_id: response.id}.to_param, method: :post, class: "btn btn-secondary btn-xs" do %>
+                <i class="fa fa-trophy"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

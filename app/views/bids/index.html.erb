@@ -12,7 +12,6 @@
           <% end %>
         </tr>
       </thead>
-
       <tbody>
         <% @bids.each do |bid| %>
           <tr>
@@ -23,6 +22,9 @@
               <%= link_to bid.model, class: 'btn btn-secondary btn-xs' do %>
                 <i class="fa fa-pencil"></i>
               <% end %>
+              <%= link_to '/choose/index/' + bid.id.to_s, class: "btn btn-secondary btn-xs" do %>
+                <i class="fa fa-trophy"></i>
+              <% end %>
               <%= link_to bid.model, method: :delete, data: { confirm: 'Remover Bid?' }, class: "btn btn-danger btn-xs" do %>
                 <i class="fa fa-trash-o"></i>
               <% end %>
@@ -31,7 +33,6 @@
         <% end %>
       </tbody>
     </table>
-
     <div class="row">
       <div class="col-md-12">
         <%= link_to 'Novo Bid', new_bid_path, class: 'btn btn-primary' %>
@@ -39,7 +40,6 @@
     </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     <h3>Bids pendentes</h3>
@@ -76,17 +76,16 @@
                   <%= link_to reject_bid_path(bid.model), class: "btn btn-danger btn-xs" do %>
                     <i class="fa fa-thumbs-down"></i>
                   <% end %>
-          <% else 
+              <% else 
                 if a.status == BidResponse.statuses[:accepted] %>
-                  <i class="fa fa-thumbs-up"></i>
-                <% else %>
                   <i class="fa fa-thumbs-down"></i>
+                <% else %>
+                  <i class="fa fa-thumbs-up"></i>
                 <% end %>    
-                    </td>
-                  </tr>
-          <% end %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-
       </tbody>
     </table>
 </div>

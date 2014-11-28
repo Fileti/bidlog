@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104225417) do
+ActiveRecord::Schema.define(version: 20141127165735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,15 @@ ActiveRecord::Schema.define(version: 20141104225417) do
   create_table "bids", force: true do |t|
     t.string   "obs"
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "owner_id",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "owner_id",                  null: false
+    t.boolean  "status",     default: true
+    t.integer  "winner_id"
   end
 
   add_index "bids", ["owner_id"], name: "index_bids_on_owner_id", using: :btree
+  add_index "bids", ["winner_id"], name: "index_bids_on_winner_id", using: :btree
 
   create_table "bids_users", id: false, force: true do |t|
     t.integer "bid_id",  null: false
