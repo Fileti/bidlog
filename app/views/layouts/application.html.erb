@@ -87,12 +87,15 @@
 
     <div class="content-container">
 
-
-
       <div class="content-header">
         <h2 class="content-header-title"><%= yield :title %></h2>
       </div> <!-- /.content-header -->
-
+      <% if notice %>
+        <p id="notice" class="alert alert-info"><%= notice %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p id="alert" class="alert alert-danger"><%= flash[:alert] %></p>
+      <% end %>
       <%= yield %>
 
     </div> <!-- /.content-container -->
