@@ -35,6 +35,12 @@
     <%= image_tag "logo-login.png", alt: 'Bid log' %>
   </div>
 
+    <% if notice %>
+      <p id="notice" class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p id="alert" class="alert alert-danger"><%= flash[:alert] %></p>
+    <% end %>
     <div class="account-body">
       <%= yield %>
     </div> <!-- /.account-body -->
