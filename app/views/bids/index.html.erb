@@ -71,10 +71,10 @@
               a = bid.model.responses.where(bidder: current_user).first
 
               if a == nil %>
-                  <%= link_to accept_bid_path(bid.model), class: 'btn btn-secondary btn-xs' do %>
+                  <%= link_to accept_bid_path(bid.model), class: 'btn btn-secondary btn-xs', title: 'Aceitar bid' do %>
                     <i class="fa fa-thumbs-up"></i>
                   <% end %>
-                  <%= link_to reject_bid_path(bid.model), class: "btn btn-danger btn-xs" do %>
+                  <%= link_to reject_bid_path(bid.model), class: "btn btn-danger btn-xs", title: 'Recusar Bid' do %>
                     <i class="fa fa-thumbs-down"></i>
                   <% end %>
               <% else
