@@ -14,7 +14,7 @@ class Bid < ActiveRecord::Base
 
   # TODO : review names
   scope :user_bids, -> (user) { where(owner_id: user.id, status:true ).newest }
-  scope :response_bids, -> (user) { joins(:bidders).where(bids_users: { user_id: user.id }) }
+  scope :response_bids, -> (user) { joins(:bidders).where(bids_users: { user_id: user.id }, status:true) }
 
   scope :newest, -> { order(created_at: :desc) }
 
