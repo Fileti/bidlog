@@ -18,7 +18,7 @@
             <td><%= response.bidder.name %></td>
             <td><%= response.status %></td>
             <td>
-              <%= link_to '/choose/chosen/' + @bid.id.to_s + '?' + {response_id: response.id}.to_param, method: :post, class: "btn btn-secondary btn-xs" do %>
+              <%= link_to bid_choose_path(@bid, response), method: :put, class: "btn btn-secondary btn-xs" do %>
                 <i class="fa fa-trophy"></i>
               <% end %>
             </td>

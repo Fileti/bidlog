@@ -19,11 +19,12 @@
             <td><%= bid.obs %></td>
             <td><%= bid.bidders_excerpt %></td>
             <td>
-              <%= link_to bid.model, class: 'btn btn-secondary btn-xs' do %>
+              <%= link_to edit_bid_path(bid.model), class: 'btn btn-secondary btn-xs' do %>
                 <i class="fa fa-pencil"></i>
               <% end %>
-              <%= link_to '/choose/index/' + bid.id.to_s, class: "btn btn-secondary btn-xs" do %>
+              <%= link_to choose_bid_path(bid.model), class: bid.winner_chooser_class, title: bid.winner_chooser_title do %>
                 <i class="fa fa-trophy"></i>
+                <%= bid.responses_badge %>
               <% end %>
               <%= link_to bid.model, method: :delete, data: { confirm: 'Remover Bid?' }, class: "btn btn-danger btn-xs" do %>
                 <i class="fa fa-trash-o"></i>
@@ -65,7 +66,7 @@
             <td><%= bid.bidders_excerpt %></td>
             <td>
 
-              <% 
+              <%
               #TODO presenter
               a = bid.model.responses.where(bidder: current_user).first
 
@@ -76,12 +77,12 @@
                   <%= link_to reject_bid_path(bid.model), class: "btn btn-danger btn-xs" do %>
                     <i class="fa fa-thumbs-down"></i>
                   <% end %>
-              <% else 
+              <% else
                 if a.status == BidResponse.statuses[:accepted] %>
                   <i class="fa fa-thumbs-down"></i>
                 <% else %>
                   <i class="fa fa-thumbs-up"></i>
-                <% end %>    
+                <% end %>
               <% end %>
             </td>
           </tr>

@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  get 'choose/index/:id' => 'choose#index'
-  post 'choose/chosen/:id' => 'choose#chosen'
-
   resources :bids do
     member do
       get 'accept'
       get 'reject'
     end
+
+    resources :choose, only: [:index, :update]
   end
 
   devise_for :users

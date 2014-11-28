@@ -20,7 +20,7 @@ class BidsController < ApplicationController
   end
 
   def edit
-    @bid = Bid.find(params[:id])
+    flash[:notice] = 'Este bid já tem uma oferta eleita vencedora.' if @bid.winner.present?
     respond_with(@bid)
   end
 
