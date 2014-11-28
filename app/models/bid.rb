@@ -13,8 +13,10 @@ class Bid < ActiveRecord::Base
   accepts_nested_attributes_for :bidders, :reject_if => :all_blank, :allow_destroy => true
 
   # TODO : review names
-  scope :user_bids, -> (user) { where(owner_id: user.id, status:true ).newest }
-  scope :response_bids, -> (user) { joins(:bidders).where(bids_users: { user_id: user.id }, status:true) }
+  # TODO : Change 'status' to 'active'
+  scope :active, -> { where(status:true) }
+  scope :user_bids, -> (user) { active.where(owner_id: user.id).newest }
+  scope :response_bids, -> (user) { joins(:bidders).active.where(bids_users: { user_id: user.id }) }
 
   scope :newest, -> { order(created_at: :desc) }
 
