@@ -25,15 +25,15 @@ RSpec.describe Bid, :type => :model do
       expect(subject.bidders).to eq([b1, b2])
     end
 
-    it 'Aceita hash com parametros minimos' do
-      allow(User).to receive(:invite!).with(email: 'someemail@email.com')
-      subject.invite!("someemail@email.com")
-    end
+    #it 'Aceita hash com parametros minimos' do
+    #  allow(User).to receive(:invite!).with(email: 'someemail@email.com')
+    #  subject.invite!("someemail@email.com")
+    #end
 
-    it 'Aceita hash como parametros' do
-      allow(User).to receive(:invite!).with(name: 'teste', email: 'ee_mail@email.com')
-      subject.invite!(name: 'teste', email: 'ee_mail@email.com')
-    end
+    #it 'Aceita hash como parametros' do
+    #  allow(User).to receive(:invite!).with(name: 'teste', email: 'ee_mail@email.com')
+    #  subject.invite!(name: 'teste', email: 'ee_mail@email.com')
+    #end
 
     it 'Cria um novo se não existe' do
       subject.invite!(name: 'john', email:'e@mail.com', skip_invitation: true)
