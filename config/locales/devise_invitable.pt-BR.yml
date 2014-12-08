@@ -3,7 +3,7 @@ pt-BR:
     invitations:
       send_instructions: 'Um e-mail convite foi enviado para %{email}.'
       invitation_token_invalid: 'O token convite fornecido não é válido!'
-      updated: 'Sua senha foi definida com sucesso. Você agora está assinado dentro'
+      updated: 'Sua senha foi definida com sucesso. Bem vindo(a)!'
       no_invitations_remaining: 'Nenhum convite restante'
       invitation_removed: 'Seu convite foi removido.'
       new:
