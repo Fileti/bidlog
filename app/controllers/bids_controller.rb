@@ -4,7 +4,7 @@ class BidsController < ApplicationController
   def index
     @bids = BidsPresenter.new(Bid.user_bids(current_user))
     @bids_to_response = BidsPresenter.new(Bid.response_bids(current_user))
-    
+
     respond_with(@bids)
   end
 
@@ -26,10 +26,8 @@ class BidsController < ApplicationController
 
   def create
     # TODO: isolar!
-   
     @bid = Bid.new(bid_params)
-    save_bid @bid
-    
+
     if save_bid @bid
         redirect_to bids_path
     else
@@ -44,7 +42,7 @@ class BidsController < ApplicationController
     new_bid = @bid.dup
     new_bid.parent_id = @bid.id
     new_bid.bidders = @bid.bidders
-    
+
     save_bid (new_bid)
 
     @bid.status = false
@@ -88,16 +86,16 @@ class BidsController < ApplicationController
     def save_bid bid
       ActiveRecord::Base.transaction do
         bid.owner = current_user
-        
+
         bid.bidders.each do |bidder|
           bidder.invite!
         end
-      
-      if bid.save
-        true
-      else
-        false
+
+        if bid.save
+          true
+        else
+          false
+        end
       end
     end
-  end
 end
