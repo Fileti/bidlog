@@ -87,18 +87,22 @@ class BidsController < ApplicationController
       ActiveRecord::Base.transaction do
         bid.owner = current_user
 
-        bid.bidders.map do |bidder|
+        bid.bidders.each do |bidder|
           # TODO nivel tosco master!
           user = User.find_by email: bidder.email
-          return user if user.present?
-          user = User.find_by email: bidder.email
+
+          if user.present?
+            BidMailer.invite(user).deliver
+          else
+            bidder.invite!
+            user = User.find_by email: bidder.email
+          end
+
+          bidder.id = user.id
+          bidder.reload
         end
 
-        if bid.save
-          true
-        else
-          false
-        end
+        bid.save
       end
     end
 end
