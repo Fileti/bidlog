@@ -18,7 +18,7 @@
             <td><%= response.bidder.name %></td>
             <td><%= response.status %></td>
             <td>
-              <% if (@bid.winner_id <= 0)
+              <% if (@bid.nil? and @bid.winner_id <= 0)
                 link_to bid_choose_path(@bid, response), method: :put, class: "btn btn-secondary btn-xs" do %>
                   <i class="fa fa-trophy"></i>
                 <% end
