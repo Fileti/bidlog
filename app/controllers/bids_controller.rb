@@ -3,7 +3,9 @@ class BidsController < ApplicationController
 
   def index
     @bids = BidsPresenter.new(Bid.user_bids(current_user))
+    # TODO: change this names
     @bids_to_response = BidsPresenter.new(Bid.response_bids(current_user))
+    @bids_responded   = BidsPresenter.new(Bid.responded_bids(current_user))
 
     respond_with(@bids)
   end
