@@ -11,7 +11,7 @@ class BidQuery
   end
 
   def bids_responded
-    BidResponse.joins(:bid).where(bidder: user).collect(&:bid)
+    BidResponse.bids_responded(user).collect(&:bid)
   end
 
   def bids_owned
@@ -19,6 +19,6 @@ class BidQuery
   end
 
   def bids_responded_ids
-    BidResponse.select(:bid_id).where(bidder: user).uniq
+    BidResponse.bids_responded_ids(user)
   end
 end
