@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Bid, :type => :model do
-  fixtures :bids, :users 
+  fixtures :bids, :users, :bid_responses
 
   it { is_expected.to belong_to :parent }
   it { is_expected.to belong_to(:owner)
@@ -44,6 +44,17 @@ RSpec.describe Bid, :type => :model do
       b1 = users(:bidder1)
       subject.invite!(name: b1.name, email: b1.email) 
       expect(b1.reload.invitations_count).to eq(0)
+    end
+  end
+
+  context '#bid response scopes' do
+    let(:bid_com_respostas) { bids(:bid_com_respostas) }
+    it 'bid_com_respostas deve ter 3 bidders' do
+      expect(bid_com_respostas.bidders.count).to be 3
+    end
+
+    it 'bid_com_respostas deve ter 2 respostas' do
+      expect(bid_com_respostas.responses.count).to be 2
     end
   end
 end

@@ -14,9 +14,9 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <i class="fa fa-cogs"></i>
       </button>
-      <a class="navbar-brand navbar-brand-image" href="/index.html">
+      <%= link_to root_path do %>
         <%= image_tag "logo.png", alt: 'Site logo' %>
-      </a>
+      <% end %>
     </div> <!-- /.navbar-header -->
     <div class="navbar-collapse collapse">
     </div> <!--/.navbar-collapse -->
