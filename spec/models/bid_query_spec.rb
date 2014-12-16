@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BidQuery, type: :model do
   fixtures :users, :bids, :bid_responses
-  subject { described_class.new(bid, user) }
+  subject { described_class.new(user) }
 
-  let(:bid) { bids(:bid_com_respostas) }
-  let(:user) { bid.owner }
+  let(:user) { users(:owner) }
 
   it '#bids_owned' do
     bids = subject.bids_owned
