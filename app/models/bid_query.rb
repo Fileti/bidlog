@@ -7,11 +7,11 @@ class BidQuery
   end
 
   def bids_to_respond
-    Bid.joins(:bidders).where(bidder_user: { bidder_id: user.id }).not.where(id: bids_responded_ids)
+    Bid.joins(:bidders).where(bids_users: { user_id: user.id }).where.not(id: bids_responded_ids)
   end
 
   def bids_responded
-    BidResponse.joins(:bid).where(bidder: user, bid: bid).collect(&:bid)
+    BidResponse.joins(:bid).where(bidder: user).collect(&:bid)
   end
 
   def bids_owned
