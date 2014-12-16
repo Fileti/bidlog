@@ -1,4 +1,4 @@
-<%= content_for :title, 'Choose a winner to bid' %>
+<%= content_for :title, "Escolher participante vencedor do Bid ##{@bid.id}" %>
 
 <div class="row">
   <div class="col-md-12">
@@ -7,8 +7,8 @@
         <tr>
         <td>#</td>
         <td>Nome</td>
-        <td>Status</td>
-        <td></td>
+        <td>Aceitou participar?</td>
+        <td>&nbsp;</td>
         </tr>
       </thead>
       <tbody>
@@ -16,15 +16,18 @@
           <tr>
             <td><%= response.id %></td>
             <td><%= response.bidder.name %></td>
-            <td><%= response.status %></td>
+            <td><%= response.status == 'accepted' ? 'Sim' : 'Não' %></td>
             <td>
-              <% if (@bid.nil? and @bid.winner_id <= 0)
-                link_to bid_choose_path(@bid, response), method: :put, class: "btn btn-secondary btn-xs" do %>
-                  <i class="fa fa-trophy"></i>
+
+              <% if @bid.winner.blank? %>
+                <%= link_to bid_choose_path(@bid, response), title: 'Escolher como vencedor', method: :put, class: "btn btn-secondary btn-xs" do %>
+                  <i class="fa fa-trophy"></i> Escolher como vencedor
                 <% end
-              else  
+              else
                 if (@bid.winner_id == response.id) %>
-                  <i class="fa fa-trophy"></i>  
+                  <span class="btn btn-success btn-xs">
+                    <i class="fa fa-trophy"></i>
+                  </span>
                 <% end
                 end %>
             </td>
