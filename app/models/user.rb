@@ -12,4 +12,16 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :bids_as_bidder, class_name: 'Bid'
 
   has_many :bid_responses, foreign_key: 'bidder_id'
+
+  scope :bids_responded, ->(bid) do
+    bid_responses
+  end
+
+  def bids_responded(bid = nil)
+    if bid
+      bid_responses.includes(:bid).where(bid_id: bid.id)
+    else
+      bid_responses.includes(:bid)
+    end
+  end
 end
