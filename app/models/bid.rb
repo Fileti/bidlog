@@ -16,21 +16,30 @@ class Bid < ActiveRecord::Base
   # TODO : Change 'status' to 'active'
   scope :active, -> { where(status:true) }
   scope :user_bids, -> (user) { active.where(owner_id: user.id).newest }
-  scope :response_bids, -> (user) do
-    joins(:bidders, :responses)
-    .active
-    .where(bids_users: { user_id: user.id })
-    .where.not(bid_responses: { bidder_id: user.id })
-    .where("bids_users.user_id = bid_responses.bidder_id")
-  end
+#  scope :response_bids, -> (user) do
+#    joins(:bidders, :responses)
+#    .active
+#    .where(bids_users: { user_id: user.id })
+#    .where.not(bid_responses: { bidder_id: user.id })
+#    .where("bids_users.user_id = bid_responses.bidder_id")
+#  end
+#
+#  scope :responded_bids, -> (user) do
+#    joins(:bidders, :responses)
+#    .active
+#    .where(
+#      bids_users: { user_id: user.id },
+#      bid_responses: { bidder_id: user.id })
+#    .where("bids_users.user_id = bid_responses.bidder_id")
+#  end
+#
 
-  scope :responded_bids, -> (user) do
-    joins(:bidders, :responses)
+  scope :bids_to_respond, -> (user, bids_responded_ids) do
+    joins(:bidders)
     .active
-    .where(
-      bids_users: { user_id: user.id },
-      bid_responses: { bidder_id: user.id })
-    .where("bids_users.user_id = bid_responses.bidder_id")
+    .newest
+    .where(bids_users: { user_id: user.id })
+    .where.not(id: bids_responded_ids)
   end
 
   scope :newest, -> { order(created_at: :desc) }
