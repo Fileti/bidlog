@@ -11,3 +11,19 @@ bidder2:
   name: Bidder 2
   email: bidder2@email.com
   confirmed_at: 2014-09-01 12:00
+bidder_responde_positivo:
+  name: Bidder positivo
+  email: bidder_p@email.com
+  confirmed_at: 2014-09-01 12:00
+bidder_responde_negativo:
+  name: Bidder negativo
+  email: bidder_n@email.com
+  confirmed_at: 2014-09-01 12:00
+bidder_nao_responde:
+  name: Bidder nao responde
+  email: bidder_sr@email.com
+  confirmed_at: 2014-09-01 12:00
+bidder_extra:
+  name: Bidder extra
+  email: bidder_ex@email.com
+  confirmed_at: 2014-09-01 12:00

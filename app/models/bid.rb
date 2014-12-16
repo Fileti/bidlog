@@ -18,7 +18,8 @@ class Bid < ActiveRecord::Base
   scope :user_bids, -> (user) { active.where(owner_id: user.id).newest }
   scope :response_bids, -> (user) do
     joins(:bidders, :responses)
-    .active.where(bids_users: { user_id: user.id })
+    .active
+    .where(bids_users: { user_id: user.id })
     .where.not(bid_responses: { bidder_id: user.id })
     .where("bids_users.user_id = bid_responses.bidder_id")
   end

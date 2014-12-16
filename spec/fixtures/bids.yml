@@ -2,4 +2,17 @@
 bid1:
   obs: bid1
   owner: owner
-#  bidders: bidder1, bidder2
+bid_com_respostas:
+  obs: bid2
+  owner: owner
+  bidders:
+    - bidder_responde_positivo
+    - bidder_responde_negativo
+    - bidder_nao_responde
+bid_com_resposta_mesmo_bidder:
+  obs: bid3
+  owner: owner
+  bidders:
+    - bidder_extra
+    - bidder_responde_positivo
+    - bidder_nao_responde

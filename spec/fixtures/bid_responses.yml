@@ -1,0 +1,19 @@
+---
+# 0 rejected
+# 1 accepted
+bid_com_respostas_1:
+  bid: bid_com_respostas
+  bidder: bidder_responde_positivo
+  status: 1
+bid_com_respostas_2:
+  bid: bid_com_respostas
+  bidder: bidder_responde_negativo
+  status: 0
+bid_com_resposta_mesmo_bidder_1:
+  bid: bid_com_resposta_mesmo_bidder
+  bidder: bidder_extra
+  status: 1
+bid_com_resposta_mesmo_bidder_2:
+  bid: bid_com_resposta_mesmo_bidder
+  bidder: bidder_responde_positivo
+  status: 1
