@@ -2,10 +2,10 @@ class BidsController < ApplicationController
   before_action :set_bid, only: [:show, :edit, :update, :destroy, :accept, :reject]
 
   def index
-    @bids = BidsPresenter.new(Bid.user_bids(current_user))
+    @bids = BidsPresenter.new(BidQuery.bids_owned(current_user))
     # TODO: change this names
-    @bids_to_response = BidsPresenter.new(Bid.response_bids(current_user))
-    @bids_responded   = BidsPresenter.new(Bid.responded_bids(current_user))
+    @bids_to_response = BidsPresenter.new(BidQuery.bids_to_respond(current_user))
+    @bids_responded   = BidsPresenter.new(BidQuery.bids_responded(current_user))
 
     respond_with(@bids)
   end
