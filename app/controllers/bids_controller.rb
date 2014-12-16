@@ -30,30 +30,16 @@ class BidsController < ApplicationController
     # TODO: isolar!
     @bid = Bid.new(bid_params)
 
-    if save_bid @bid
-        redirect_to bids_path
+    if BidBusiness(@bid, current_user).save
+      redirect_to bids_path
     else
       respond_with @bid
     end
-
   end
 
   # TODO: mudar para uma camada de business, mais fácil de testar
   def update
-    @bid.assign_attributes(bid_params)
-
-    new_bid = @bid.dup
-    new_bid.parent_id = @bid.id
-    new_bid.bidders = @bid.bidders
-
-    save_bid (new_bid)
-
-    # descarta as alterações, só queremos a mudança do status para false
-    set_bid
-
-    @bid.status = false
-    @bid.save
-
+    BidBusiness.new(@bid, current_user, bid_params).update
     redirect_to bids_path
   end
 
@@ -89,27 +75,4 @@ class BidsController < ApplicationController
       params.require(:bid).permit(:obs, bidders_attributes: [:id, :name, :email, :_destroy])
     end
 
-    # TODO: Se for uma alteração acho q o email tem q ser diferente!
-    def save_bid bid
-      ActiveRecord::Base.transaction do
-        bid.owner = current_user
-
-        bid.bidders.each do |bidder|
-          # TODO nivel tosco master!
-          user = User.find_by email: bidder.email
-
-          if user.present?
-            BidMailer.invite(user).deliver
-          else
-            bidder.invite!
-            user = User.find_by email: bidder.email
-          end
-
-          bidder.id = user.id
-          bidder.reload
-        end
-
-        bid.save
-      end
-    end
 end
