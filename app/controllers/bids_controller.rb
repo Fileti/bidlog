@@ -22,7 +22,7 @@ class BidsController < ApplicationController
   end
 
   def edit
-    flash[:notice] = 'Este bid já tem uma oferta eleita vencedora.' if @bid.winner.present?
+    flash[:notice] = 'Este bid já tem uma oferta eleita vencedora. Editá-lo irá reabrir o bid e cancelar o aceite!' if @bid.winner.present?
     respond_with(@bid)
   end
 
