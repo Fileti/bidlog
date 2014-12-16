@@ -33,5 +33,46 @@ RSpec.describe BidQuery, type: :model do
         )
       )
     end
+
+    it '#bids_to_respond' do
+      # este usuário já respondeu todos os bids!
+      expect(subject.bids_to_respond).to eq []
+    end
+
+    context 'usuario com bids_pendentes' do
+      let(:user) { users(:bidder_nao_responde) }
+      it '#bids_to_respond' do
+        expect(subject.bids_to_respond).to(
+          eq(
+            [
+              bids(:bid_com_respostas),
+              bids(:bid_com_resposta_mesmo_bidder)
+            ]
+          )
+        )
+      end
+    end
+
+    context 'bids respondidos' do
+      let(:user) { users(:bidder_nao_responde) }
+      it '#bids_responded' do
+        expect(subject.bids_responded).to eq []
+      end
+
+      context 'usuario já com todos respondidos' do
+        let(:user) { users(:bidder_responde_positivo) }
+
+        it "#bids_responded" do
+          expect(subject.bids_responded).to(
+            eq(
+              [
+                bids(:bid_com_respostas),
+                bids(:bid_com_resposta_mesmo_bidder)
+              ]
+            )
+          )
+        end
+      end
+    end
   end
 end
