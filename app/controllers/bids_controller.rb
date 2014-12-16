@@ -38,14 +38,18 @@ class BidsController < ApplicationController
 
   end
 
+  # TODO: mudar para uma camada de business, mais fácil de testar
   def update
-    @bid.update(bid_params)
+    @bid.assign_attributes(bid_params)
 
     new_bid = @bid.dup
     new_bid.parent_id = @bid.id
     new_bid.bidders = @bid.bidders
 
     save_bid (new_bid)
+
+    # descarta as alterações, só queremos a mudança do status para false
+    set_bid
 
     @bid.status = false
     @bid.save
@@ -85,6 +89,7 @@ class BidsController < ApplicationController
       params.require(:bid).permit(:obs, bidders_attributes: [:id, :name, :email, :_destroy])
     end
 
+    # TODO: Se for uma alteração acho q o email tem q ser diferente!
     def save_bid bid
       ActiveRecord::Base.transaction do
         bid.owner = current_user

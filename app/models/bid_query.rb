@@ -14,7 +14,7 @@ class BidQuery
   end
 
   def bids_owned
-    user.bids_as_owner
+    user.bids_as_owner.active
   end
 
   def bids_responded_ids

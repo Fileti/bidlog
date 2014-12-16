@@ -9,6 +9,13 @@ bid_com_respostas:
     - bidder_responde_positivo
     - bidder_responde_negativo
     - bidder_nao_responde
+bid_copia:
+  obs: copia do 3
+  owner: owner
+  bidders:
+    - bidder_extra
+    - bidder_responde_positivo
+  status: false
 bid_com_resposta_mesmo_bidder:
   obs: bid3
   owner: owner
@@ -16,3 +23,4 @@ bid_com_resposta_mesmo_bidder:
     - bidder_extra
     - bidder_responde_positivo
     - bidder_nao_responde
+  parent: bid_copia (Bid)
