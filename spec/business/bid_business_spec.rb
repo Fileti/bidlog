@@ -18,8 +18,8 @@ RSpec.describe BidBusiness, type: :model do
 
     it '#invite_or_notify create new user, inviting!' do
       u = User.new(email: 'nonexistingemail@email.com')
-      expect(u).to receive(:invite!)
-      expect(User).to receive(:find_by).with(email: u.email).and_return(nil, u)
+      expect(subject).to receive(:bid_invite).with(u).and_return(u)
+      expect(User).to receive(:find_by).with(email: u.email).and_return(nil)
       subject.invite_or_notify(u, :notifier)
     end
   end

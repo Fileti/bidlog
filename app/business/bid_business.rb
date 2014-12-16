@@ -38,14 +38,22 @@ class BidBusiness
     bid.save
   end
 
+  def bid_mailer(user, notifier)
+    BidMailer.send(notifier, user).deliver_now
+  end
+
+  def bid_invite(user)
+    user.invite!
+    User.find_by email: bidder.email
+  end
+
   def invite_or_notify(bidder, notifier)
     # TODO nivel tosco master!
     user = User.find_by email: bidder.email
     if user.present?
-      BidMailer.send(notifier, user).deliver_now
+      bid_mailer(user, notifier)
     else
-      bidder.invite!
-      user = User.find_by email: bidder.email
+      user = bid_invite(bidder)
     end
     user.id
   end
