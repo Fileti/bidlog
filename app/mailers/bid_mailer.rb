@@ -7,4 +7,10 @@ class BidMailer < ActionMailer::Base
 
     mail(to: user.email, subject: "Convite para participar de um bid")
   end
+
+  def bid_updated_notify(user)
+    @user = user
+
+    mail(to: user.email, subject: "Bid que você participa foi alterado")
+  end
 end
