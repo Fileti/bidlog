@@ -24,3 +24,8 @@ bid_com_resposta_mesmo_bidder:
     - bidder_responde_positivo
     - bidder_nao_responde
   parent: bid_copia (Bid)
+bid_para_criar_copia:
+  obs: bid para copia
+  owner: owner_do_teste_de_update
+  bidders:
+    - bidder_extra

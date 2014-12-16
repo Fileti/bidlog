@@ -27,3 +27,7 @@ bidder_extra:
   name: Bidder extra
   email: bidder_ex@email.com
   confirmed_at: 2014-09-01 12:00
+owner_do_teste_de_update:
+  name: owner2
+  email: owner2@teste.com
+  confirmed_at: 2014-09-01 12:00
