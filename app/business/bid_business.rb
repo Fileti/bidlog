@@ -1,7 +1,7 @@
 class BidBusiness
   attr_accessor :params, :bid, :current_user
   def initialize(bid, user, params = {})
-    self.bid  = bid
+    self.bid = bid
     self.params = params
     self.current_user = user
   end
@@ -44,7 +44,7 @@ class BidBusiness
 
   def bid_invite(user)
     user.invite!
-    User.find_by email: bidder.email
+    User.find_by email: user.email
   end
 
   def invite_or_notify(bidder, notifier)
