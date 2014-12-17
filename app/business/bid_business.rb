@@ -59,4 +59,18 @@ class BidBusiness
     end
     user.id
   end
+
+  class << self
+    def bids_owned(current_user)
+      BidsPresenter.new(BidQuery.bids_owned(current_user))
+    end
+
+    def bids_to_respond(current_user)
+      BidsPresenter.new(BidQuery.bids_to_respond(current_user))
+    end
+
+    def bids_responded(current_user)
+      BidsPresenter.new(BidQuery.bids_responded(current_user))
+    end
+  end
 end
