@@ -46,4 +46,29 @@ RSpec.describe BidBusiness, type: :model do
       expect(User.where(email: 'um_email@teste.com').count).to eq 1
     end
   end
+
+  context 'updating' do
+    let(:bid) { bids(:bid_para_criar_copia) }
+    let(:params) {
+      {
+        "obs"=>bid.obs + " (atualizado)"
+      }
+    }
+    it '#update' do
+      expect(subject).to(
+        receive(:invite_or_notify)
+          .with(bid.bidders.first, :bid_updated_notify)
+      ).and_return(bid.bidders.first.id)
+
+      new_bid = subject.update
+
+      bid.reload
+
+      expect(new_bid.id).to be > bid.id
+      expect(new_bid.obs).to eq "#{bid.obs} (atualizado)"
+      expect(bid.status).to be false
+      expect(new_bid.status).to be true
+      expect(new_bid.parent).to eq bid
+    end
+  end
 end

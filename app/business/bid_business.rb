@@ -14,11 +14,12 @@ class BidBusiness
 
     ActiveRecord::Base.transaction do
       save_bid(new_bid, :bid_updated_notify)
-      bid.satus = false
+      bid.status = false
       bid.save
+      return new_bid
     end
 
-    new_bid
+    false
   end
 
   def save
@@ -27,15 +28,16 @@ class BidBusiness
     end
   end
 
-  def save_bid notifier = :invite
-    bid.owner = current_user
+  def save_bid nbid = nil, notifier = :invite
+    nbid ||= bid
+    nbid.owner = current_user
 
-    bid.bidders.each do |bidder|
+    nbid.bidders.each do |bidder|
       bidder.id = invite_or_notify(bidder, notifier)
       bidder.reload
     end
 
-    bid.save
+    nbid.save
   end
 
   def bid_mailer(user, notifier)
