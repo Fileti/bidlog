@@ -50,10 +50,19 @@ RSpec.describe BidBusiness, type: :model do
   context 'updating' do
     let(:bid) { bids(:bid_para_criar_copia) }
     let(:params) {
-      {
-        "obs"=>bid.obs + " (atualizado)"
+      bidder = bid.bidders.first
+      { 
+        "obs" => bid.obs + " (atualizado)",
+        "bidders_attributes" => {
+          "0"=> {
+            "name" => bidder.name,
+            "email"=> bidder.email,
+            "_destroy"=>"false",
+          }
+        }
       }
     }
+
     it '#update' do
       expect(subject).to(
         receive(:invite_or_notify)

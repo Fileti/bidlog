@@ -72,6 +72,6 @@ class BidsController < ApplicationController
     end
 
     def bid_params
-      params.require(:bid).permit(:obs, bidders_attributes: [:id, :name, :email, :_destroy])
+      params.require(:bid).permit(:obs, bidders_attributes: [:name, :email, :_destroy])
     end
 end
