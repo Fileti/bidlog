@@ -30,7 +30,7 @@ class BidsController < ApplicationController
     # TODO: isolar!
     @bid = Bid.new(bid_params)
 
-    if BidBusiness(@bid, current_user).save
+    if BidBusiness.new(@bid, current_user).save
       redirect_to bids_path
     else
       respond_with @bid
