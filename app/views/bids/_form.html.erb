@@ -9,11 +9,322 @@
       </h3>
     </div> <!-- /.portlet-header -->
 
+
     <div class="portlet-content">
       <%= f.input :obs %>
     </div> <!-- portlet-content -->
   </div>
 
+  <div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-info"></i>
+          Informações Obrigatórias
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+
+        <label>
+          Frete
+        </label>
+        <div class="form-group">
+          <label class="radio-inline">
+            <input type="checkbox" name="frete-type[]" value="aereo">
+            Aéreo
+          </label>
+          <label class="radio-inline">
+            <input type="checkbox" name="frete-type[]" value="fuel">
+            Fuel
+          </label>
+          <label class="radio-inline">
+            <input type="checkbox" name="frete-type[]" value="security fee">
+            Security fee
+          </label>
+        </div>
+
+        <label>
+          Origem
+        </label>
+        <div class="form-group">
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="awb fee">
+              AWB Fee
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="Liberação Aduaneira">
+              Liberação Aduaneira
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="EDIC">
+              EDIC
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="Handling Origem">
+              Handling Origem
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="Pick Up">
+              Pick Up
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="origem[]" value="Taxas Terminais">
+              Taxas Terminais
+            </label>
+
+        </div>
+
+        <label>
+          Destino
+        </label>
+        <div class="form-group">
+          <div class="form-group">
+            <label class="radio-inline">
+              <input type="checkbox" name="destino[]" value="Collect fee">
+              Collect fee
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="destino[]" value="Delivery">
+              Delivery
+            </label>
+            <label class="radio-inline">
+              <input type="checkbox" name="destino[]" value="Desconsolidação">
+              Desconsolidação
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-truck"></i>
+          Dados do Exportador
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+        <div class="form-group">
+          <label class="radio-inline">
+            <input type="radio" name="exporter-type" value="anteriores">
+            Usar dados de bids anteriores
+          </label>
+        </div>
+        <div class="form-group retreated">
+          <select class="form-control">
+            <option selected="">(selecionar)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="radio-inline">
+            <input type="radio" name="exporter-type" value="mensal">
+            Cadastrar novo<br>
+          </label>
+        </div>
+        <div class="form-group retreated">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="col-md-1">Nome</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Nome do exportador">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-1">Endereço</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Endereço">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-1">Cidade</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Cidade">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-1">Estado</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Estado">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-1">País</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="País">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-1">CEP</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="CEP">
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div> <!-- portlet-content -->
+    </div>
+
+<div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-plane"></i>
+          Origem
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+        <div class="form-group">
+          <label class="radio-inline">
+            <input type="radio" name="origin-type" value="airport">
+            Aeroporto de origem
+          </label>
+        </div>
+        <div class="form-group retreated">
+          <select class="form-control">
+            <option selected="">(selecionar)</option>
+            <option>HONG KONG, HK (HKG)</option>
+            <option>MEMPHIS TN, US (MEM)</option>
+            <option>SHANGHAI, CN (PVG)</option>
+            <option>INCHEON, KR (ICN)</option>
+            <option>DUBAI, AE (DXB)</option>
+            <option>ANCHORAGE AK, US (ANC)</option>
+            <option>LOUISVILLE KY, US (SDF)</option>
+            <option>FRANKFURT, DE (FRA)</option>
+            <option>PARIS, FR (CDG)</option>
+            <option>TOKYO, JP (NRT</option>
+            <option>MIAMI FL, US (MIA)</option>
+            <option>SINGAPORE, SG (SIN)</option>
+            <option>BEIJING, CN (PEK)</option>
+            <option>LOS ANGELES CA, US (LAX)</option>
+            <option>TAIPEI, TW (TPE)</option>
+            <option>AMSTERDAM, NL (AMS)</option>
+            <option>LONDON, GB (LHR)</option>
+            <option>GUANGZHOU, CN (CAN)</option>
+            <option>NEW YORK NY, US (JFK)</option>
+            <option>BANGKOK, TH (BKK)</option>
+            <option>CHICAGO IL, US (ORD)</option>
+            <option>INDIANAPOLIS IN, US (IND)</option>
+            <option>TOKYO, JP (HND)</option>
+            <option>SHENZHEN, CN (SZX)</option>
+            <option>DOHA, OA (DOH)</option>
+            <option>LEIPZIG, DE (LEJ)</option>
+            <option>COLOGNE, DE (CGN)</option>
+            <option>KUALA LUMPUR, MY (KUL)</option>
+            <option>ABU DHABI, AE (AUH)</option>
+            <option>OSAKA, JP (KIX)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="radio-inline">
+            <input type="radio" name="origin-type" value="best route">
+            Melhor rota
+          </label>
+        </div>
+        <div class="form-group retreated">
+          <label class="radio-inline">
+            <input type="radio" name="flight-type" value="faster">
+            Serviço mais rápido
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="flight-type" value="cheaper">
+            Serviço com melhor tarifa
+          </label>
+        </div>
+      </div> <!-- portlet-content -->
+    </div>
+
+<div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-cubes"></i>
+          Dados da Carga
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+        <form class="form" role="form">
+          <div class="col-md-4">
+            <h4 class="heading">Carga 1</h4>
+            <div class="form-group">
+              <label>Peso bruto (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso bruto">
+            </div>
+            <div class="form-group">
+              <label>Peso cubado (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso cubado">
+            </div>
+            <h5 class="heading">Dimensões</h5>
+            <div class="form-group">
+              <label>Comprimento (mm)</label>
+              <input type="text" class="form-control" placeholder="Comprimento">
+            </div>
+            <div class="form-group">
+              <label>Largura (mm)</label>
+              <input type="text" class="form-control" placeholder="Largura">
+            </div>
+            <div class="form-group">
+              <label>Altura (mm)</label>
+              <input type="text" class="form-control" placeholder="Altura">
+            </div>
+          </div> <!-- col-md-4 -->
+          <div class="col-md-4">
+            <h4 class="heading">Carga 2</h4>
+            <div class="form-group">
+              <label>Peso bruto (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso bruto">
+            </div>
+            <div class="form-group">
+              <label>Peso cubado (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso cubado">
+            </div>
+            <h5 class="heading">Dimensões</h5>
+            <div class="form-group">
+              <label>Comprimento (mm)</label>
+              <input type="text" class="form-control" placeholder="Comprimento">
+            </div>
+            <div class="form-group">
+              <label>Largura (mm)</label>
+              <input type="text" class="form-control" placeholder="Largura">
+            </div>
+            <div class="form-group">
+              <label>Altura (mm)</label>
+              <input type="text" class="form-control" placeholder="Altura">
+            </div>
+          </div> <!-- col-md-4 -->
+          <div class="col-md-4">
+            <h4 class="heading">Carga 3</h4>
+            <div class="form-group">
+              <label>Peso bruto (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso bruto">
+            </div>
+            <div class="form-group">
+              <label>Peso cubado (kg)</label>
+              <input type="text" class="form-control" placeholder="Peso cubado">
+            </div>
+            <h5 class="heading">Dimensões</h5>
+            <div class="form-group">
+              <label>Comprimento (mm)</label>
+              <input type="text" class="form-control" placeholder="Comprimento">
+            </div>
+            <div class="form-group">
+              <label>Largura (mm)</label>
+              <input type="text" class="form-control" placeholder="Largura">
+            </div>
+            <div class="form-group">
+              <label>Altura (mm)</label>
+              <input type="text" class="form-control" placeholder="Altura">
+            </div>
+          </div> <!-- col-md-4 -->
+        </form>
+      </div> <!-- portlet-content -->
+    </div>
 
   <div class="portlet">
     <div class="portlet-header">
@@ -33,6 +344,34 @@
     </div>
   </div>
 
+<div class="portlet">
+      <div class="portlet-header">
+        <h3>
+          <i class="fa fa-clock-o"></i>
+          Encerramento
+        </h3>
+      </div> <!-- /.portlet-header -->
+
+      <div class="portlet-content">
+        <label>
+          Este bid encerra-se em
+        </label>
+        <div class="form-group">
+          <div class="col-md-3">
+            <div class="ui-datepicker input-group date" data-date-autoclose="true">
+              <input class="form-control" type="text">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div> <!-- col-md-3 -->
+          <div class="col-md-3">
+            <div class="input-group bootstrap-timepicker"><div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="fa fa-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="fa fa-chevron-up"></i></a></td></tr><tr><td><input type="text" name="hour" class="bootstrap-timepicker-hour" maxlength="2"></td> <td class="separator">:</td><td><input type="text" name="minute" class="bootstrap-timepicker-minute" maxlength="2"></td> </tr><tr><td><a href="#" data-action="decrementHour"><i class="fa fa-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="fa fa-chevron-down"></i></a></td></tr></tbody></table></div>
+              <input type="text" class="ui-timepicker form-control">
+              <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+            </div>
+          </div> <!-- col-md-3 -->
+        </div>
+      </div> <!-- portlet-content -->
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-secondary' %>
